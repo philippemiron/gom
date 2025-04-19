@@ -1,7 +1,7 @@
 [project]
 name = "gom"
 version = "0.1.0"
-description = "Add your description here"
+description = "Website presenting the Gulf of Mexico (GOM) sea surface height anomaly (SSH) data"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -21,5 +21,8 @@ dev = [
 ]
 
 [tool.ruff]
-line-length = 128
-select = ["ALL"]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["D", "E", "F", "I"]
+ignore = ["D203", "D213"]

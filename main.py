@@ -1,3 +1,5 @@
+"""Script to retrieve and plot sea surface height (SSH) data from Copernicus Marine Service."""
+
 import datetime
 import logging
 import os
@@ -27,7 +29,7 @@ def add_colorbar(
     fmt: str | None = None,
     range_limit: list | None = None,
 ) -> mpl.colorbar.Colorbar:
-    """Add color bar and format properly."""
+    """Add color bar to the figure and format it."""
     divider = make_axes_locatable(ax)
     cax = divider.append_axes("right", size="3%", pad=0.05, axes_class=plt.Axes)
     cb = fig.colorbar(var, cax=cax, format=fmt)
@@ -37,7 +39,7 @@ def add_colorbar(
     return cb
 
 
-def retrieve_gom_ssh(day: datetime, lon: list, lat: list) -> None:
+def download_ssh_data(day: datetime, lon: list, lat: list) -> None:
     """Load SSH data from Copernicus Marine Service.
 
     Copernicus Marine Service (2023). Global Ocean - Sea Level - All Satellites
@@ -68,7 +70,7 @@ def retrieve_gom_ssh(day: datetime, lon: list, lat: list) -> None:
     )
 
 
-def generate_gom_figure(day: datetime, lon: list, lat: list) -> None:
+def plot_gom_figure(day: datetime, lon: list, lat: list) -> None:
     """Create a figure with SSH data.
 
     Args:
@@ -135,20 +137,24 @@ def generate_gom_figure(day: datetime, lon: list, lat: list) -> None:
 
 if __name__ == "__main__":
     # must set copernicus username and password as environment variables
-    copernicusmarine.login(username=os.getenv("COPERNICUS_USER"), password=os.getenv("COPERNICUS_PASS"), force_overwrite=True)
+    copernicusmarine.login(
+        username=os.getenv("COPERNICUS_USER"),
+        password=os.getenv("COPERNICUS_PASS"),
+        force_overwrite=True,
+    )
 
-    day = datetime.datetime.now(datetime.UTC).replace(hour=0, minute=0, second=0, microsecond=0)
+    # GoM region
     lon = [-98, -78]
     lat = [18, 31]
 
+    day = datetime.datetime.now(datetime.UTC).replace(hour=0, minute=0, second=0, microsecond=0)
     data_file = f"{day.strftime('%Y-%m-%d')}.nc"
-    try:
-        if not Path(data_file).exists():
-            logger.info("Downloading data")
-            args = retrieve_gom_ssh(day, lon, lat)
-        if Path(data_file).exists():
-            logger.info("Plotting")
-            generate_gom_figure(day, lon, lat)
-    except Exception as e:
-        logger.info("Current day not available")
-        logger.info(e)
+
+    if not Path(data_file).exists():
+        logger.info("Downloading data")
+        args = download_ssh_data(day, lon, lat)
+    if Path(data_file).exists():
+        logger.info("Plotting")
+        plot_gom_figure(day, lon, lat)
+    else:
+        logger.error("Data file does not exist.")
