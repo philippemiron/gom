@@ -1,0 +1,25 @@
+[project]
+name = "gom"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "cartopy>=0.24.1",
+    "cmocean>=4.0.3",
+    "copernicusmarine>=2.0.1",
+    "h5netcdf>=1.6.1",
+    "matplotlib>=3.10.1",
+    "motuclient>=3.0.0",
+    "xarray>=2025.3.1",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+    "ruff>=0.11.6",
+]
+
+[tool.ruff]
+line-length = 128
+select = ["ALL"]
