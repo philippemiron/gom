@@ -61,7 +61,11 @@
   <div class="container">
     <h1>Gulf of Mexico - Sea Surface Height</h1>
     <p>Updated daily with data from the Copernicus Marine Service</p>
-    <img src="latest.png" alt="Latest Sea Surface Height for Gulf of Mexico" />
+    <img id="gom-image" alt="Gulf of Mexico SSH">
+    <script>
+      const timestamp = Date.now();
+      document.getElementById("gom-image").src = `latest.png?cachebust=${timestamp}`;
+    </script>
     <div class="footer">
       &copy; 2025 Philippe Miron, Ph.D. • Copernicus Marine Data • <a href="https://data.marine.copernicus.eu/product/SEALEVEL_GLO_PHY_L4_NRT_008_046/description" target="_blank">Data Source</a>
     </div>
