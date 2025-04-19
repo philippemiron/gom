@@ -1,6 +1,6 @@
 import datetime
 import logging
-import sys
+import os
 from pathlib import Path
 
 import cartopy.crs as ccrs
@@ -134,10 +134,8 @@ def generate_gom_figure(day: datetime, lon: list, lat: list) -> None:
 
 
 if __name__ == "__main__":
-    # must pass copernicus username and password as arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    copernicusmarine.login(username=username, password=password, force_overwrite=True)
+    # must set copernicus username and password as environment variables
+    copernicusmarine.login(username=os.getenv("COPERNICUS_USER"), password=os.getenv("COPERNICUS_PASS"), force_overwrite=True)
 
     day = datetime.datetime.now(datetime.UTC).replace(hour=0, minute=0, second=0, microsecond=0)
     lon = [-98, -78]
