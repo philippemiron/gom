@@ -1,15 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>GoM SSH</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gulf of Mexico - Sea Surface Height</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: sans-serif; text-align: center; margin-top: 2em; }
-    img { max-width: 90%; height: auto; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    img {
+      max-width: 90%;
+      height: auto;
+    }
+
+    h1 {
+      font-family: 'Lora', serif;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #222;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .footer {
+      font-size: 0.75rem;
+      margin-top: 0rem;
+      color: #aaa;
+    }
+
+    a {
+      color: #666;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <h1>Latest state of the Gulf of Mexico</h1>
-  <img src="latest.png?cachebust=<script>document.write(Date.now())</script>" alt="Gulf of Mexico Sea surface height">
+  <div class="container">
+    <h1>Gulf of Mexico - Sea Surface Height</h1>
+    <p>Updated daily with data from the Copernicus Marine Service</p>
+    <img src="latest.png" alt="Latest Sea Surface Height for Gulf of Mexico" />
+    <div class="footer">
+      &copy; 2025 Philippe Miron, Ph.D. • Copernicus Marine Data • <a href="https://data.marine.copernicus.eu/product/SEALEVEL_GLO_PHY_L4_NRT_008_046/description" target="_blank">Data Source</a>
+    </div>
+  </div>
 </body>
 </html>
