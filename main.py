@@ -132,7 +132,7 @@ def plot_gom_figure(day: datetime, lon: list, lat: list) -> None:
         ax.set_xlim(lon)
         ax.set_ylim(lat)
 
-    fig.savefig("docs/latest.png", dpi=600)
+    fig.savefig("docs/latest.png", bbox_inches="tight", dpi=600)
 
 
 if __name__ == "__main__":
