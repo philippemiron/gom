@@ -2,7 +2,7 @@ name: gom update
 
 on:
   schedule:
-    - cron: '0 18 * * *'  # Every day
+    - cron: '0 20 * * *'  # Every day
   workflow_dispatch:      # Allows manual triggering
 permissions:
   contents: write
